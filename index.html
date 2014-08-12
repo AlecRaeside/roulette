@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Roulette simulator</title>
+</head>
+<body>
+
+
+<script>
+var playGame = function() {
+  var number = Math.random() * 38;
+  return number < 18 ? 'red' : 'black';
+}
+
+
+var playSet = function(iterations) {
+  var gameResult;
+  var redWins = 0;
+  var blackWins = 0;
+  var lossCount = 0
+  for (var i = 0; i < iterations;i++) {
+    gameResult = playGame()
+
+    if (gameResult == 'red') {
+      redWins++;
+    } else {
+      lossCount++;
+    }
+  }
+  return {wins: redWins, losses: lossCount}
+}
+
+for (var i = 0; i < 10;i++) {
+  console.log(playSet(1000))
+}
+
+
+
+</script>
+</body>
+</html>
