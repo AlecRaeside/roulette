@@ -7,9 +7,9 @@
 
 
 <script>
-var playGame = function() {
+var playGame = function(colour) {
   var number = Math.random() * 38;
-  return number < 18 ? 'red' : 'black';
+  return number < 18;
 }
 
 
@@ -30,9 +30,30 @@ var playSet = function(iterations) {
   return {wins: redWins, losses: lossCount}
 }
 
-for (var i = 0; i < 10;i++) {
-  console.log(playSet(1000))
+var Labouchere = function($$$, sequenceOfNumbers) {
+
+  var cashGoal = sequenceOfNumbers.reduce(function(runningSum, element) {
+    return runningSum + element;
+  });
+  var i = 0
+  while ($$$ < cashGoal && i < 1000) {
+    if (playGame()) {
+      $$$++
+    } else {
+      $$$--;
+    }
+    i++;
+
+    console.log($$$);
+  }
+  console.log("Games Played:"+ i);
+
+
 }
+
+
+Labouchere(0, [1,2,3]);
+
 
 
 
