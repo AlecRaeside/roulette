@@ -4,8 +4,7 @@
   <title>Roulette simulator</title>
 </head>
 <body>
-
-
+Check the console. Refresh to run again
 <script>
 var playGame = function(colour) {
   var number = Math.random() * 38;
@@ -28,6 +27,7 @@ var Labouchere = function($$$, set) {
   });
 
   console.log('Cash Goal: $'+cashGoal+'. Starting cash: $'+$$$)
+  console.log('The cash balance will be displayed after each game');
 
   var lowestCashBalance = $$$;
   var wager = 0;
@@ -58,15 +58,11 @@ var Labouchere = function($$$, set) {
 
     console.log("$"+$$$);
   }
-  console.log("Games Played:"+ gamesPlayed + " Lowest cash balance: $"+lowestCashBalance);
+  console.log("Cash Balance: $"+$$$+". Games Played:"+ gamesPlayed + ". Lowest cash balance: $"+lowestCashBalance);
 
 }
 
-
-var iterations = 1
-for (var i = 0; i < iterations;i++) {
-  Labouchere(40, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]);
-}
+Labouchere(40, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]);
 
 
 
