@@ -12,47 +12,61 @@ var playGame = function(colour) {
   return number < 18;
 }
 
+Array.prototype.first = function(){
+  return this[0];
+};
 
-var playSet = function(iterations) {
-  var gameResult;
-  var redWins = 0;
-  var blackWins = 0;
-  var lossCount = 0
-  for (var i = 0; i < iterations;i++) {
-    gameResult = playGame()
+Array.prototype.last = function(){
+  return this[this.length - 1];
+};
 
-    if (gameResult == 'red') {
-      redWins++;
-    } else {
-      lossCount++;
-    }
-  }
-  return {wins: redWins, losses: lossCount}
-}
 
-var Labouchere = function($$$, sequenceOfNumbers) {
+var Labouchere = function($$$, set) {
 
-  var cashGoal = sequenceOfNumbers.reduce(function(runningSum, element) {
+  var cashGoal = set.reduce(function(runningSum, element) {
     return runningSum + element;
   });
-  var i = 0
-  while ($$$ < cashGoal && i < 1000) {
-    if (playGame()) {
-      $$$++
+
+  console.log('Cash Goal: $'+cashGoal+'. Starting cash: $'+$$$)
+
+  var lowestCashBalance = $$$;
+  var wager = 0;
+  var gamesPlayed = 0
+  while ($$$ < cashGoal) {
+
+    wager = set.first() + set.last()
+
+    var win = playGame();
+
+    if (win) {
+      $$$ += wager;
+
+      // Remove first number
+      set.shift();
+
+      // Remove last number
+      set.pop();
+
     } else {
-      $$$--;
+      $$$ -= wager;
+
+      lowestCashBalance = Math.min(lowestCashBalance, $$$);
+
+      set.push(wager);
     }
-    i++;
+    gamesPlayed++;
 
-    console.log($$$);
+    console.log("$"+$$$);
   }
-  console.log("Games Played:"+ i);
-
+  console.log("Games Played:"+ gamesPlayed + " Lowest cash balance: $"+lowestCashBalance);
 
 }
 
 
-Labouchere(0, [1,2,3]);
+var iterations = 1
+for (var i = 0; i < iterations;i++) {
+  Labouchere(40, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]);
+}
 
 
 
